@@ -75,13 +75,14 @@ async function startApp() {
 
 
 
-        ** VEUILLEZ VOUS CONNECTER ** 
+                ** Se connecter ** 
     `);
 
-    const name = await ask("Nom : ");
+    const nom = await ask("nom : ");
+    const prenom = await ask("prenom :");
     const password = await ask("Mot de passe : ");
 
-    const user = login(name, password);
+    const user = login(nom, prenom, password);
 
     if (!user) {
         console.log(" Identifiants incorrects");
@@ -90,10 +91,15 @@ async function startApp() {
 
     setUser(user);
 
-    console.log(`\n✅ Bienvenue ${user.name} (${user.role})\n`);
+    console.log(`\n✅ Bienvenue ${user.nom} ${user.prenom}  (${user.role})\n`);
 
     showMainMenu(user);
 }
 
 startApp();
+
+
+
+
+
 

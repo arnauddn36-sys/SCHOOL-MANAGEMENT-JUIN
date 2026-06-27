@@ -6,31 +6,37 @@ db.pragma("foreign_keys = ON");
 
 
 
-//  USERS
+// TABLE USERS
 
-
+// Supprime l'ancienne table users///  
+// (DROP)  me permet de supprimer ma table et la réecrit 
 db.exec(`
-    CREATE TABLE IF NOT EXISTS users(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL,
-        role TEXT NOT NULL
-    )
+DROP TABLE IF EXISTS users;
 `);
 
+// Recrée la table users
+db.exec(`
+CREATE TABLE users(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL
+);
+`);
+
+// Préparation de l'insertion
 const insertUsers = db.prepare(`
-    INSERT OR IGNORE INTO users(name, password, role)
-    VALUES (?, ?, ?)
+INSERT INTO users(nom, prenom, password, role)
+VALUES (?, ?, ?, ?)
 `);
 
-insertUsers.run("admin", "0123", "admin");
-insertUsers.run("Bob LeBon", "0123", "teacher");
-insertUsers.run("Alice Peigne", "0123", "student");
+// Utilisateurs par défaut
+insertUsers.run("Arno", "Den", "0123", "admin");
+insertUsers.run("Bob", "LeBon", "1234", "teacher");
+insertUsers.run("Jean", "Dupont", "0000", "student");
 
-
-// ======================================================
 // 🎓 STUDENTS
-// ======================================================
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS students(
@@ -52,9 +58,7 @@ insertStudents.run("MAT-2026-021", "Kouadio", "Menelick", 18, "1er A1");
 insertStudents.run("MAT-2026-022", "Diallo", "Amoin", 19, "1er A1");
 
 
-// ======================================================
 // 👨‍🏫 TEACHERS
-// ======================================================
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS teachers(
@@ -95,9 +99,7 @@ insertSubjects.run("Mathématiques", 1);
 insertSubjects.run("Français", 2);
 
 
-// ======================================================
-// 📝 GRADES
-// ======================================================
+//  GRADES
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS grades(
@@ -119,9 +121,7 @@ insertGrades.run(1, 1, 15.5);
 insertGrades.run(2, 2, 16);
 
 
-// ======================================================
-// 🚨 ABSENCES
-// ======================================================
+//  ABSENCES
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS absences(

@@ -11,3 +11,5 @@ export function getUser() {
 export function logout() {
     currentUser = null;
 }
+
+//cette fonction me permet de savoir quel utilisateurs est connecter 

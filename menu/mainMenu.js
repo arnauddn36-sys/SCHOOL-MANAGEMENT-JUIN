@@ -43,7 +43,7 @@ export async function showMainMenu(user) {
     console.log(`
 SCHOOL MANAGEMENT
 
-User: ${user.name} (${user.role})
+User: ${user.nom}  ${user.prenom}  (${user.role})
     `);
 
     // tableau des options du menu principal
@@ -73,7 +73,7 @@ User: ${user.name} (${user.role})
     const choice = await ask("\nChoix : ");
 
     // envoie vers le routeur principal
-    handleMainMenu(choice, user);
+    await handleMainMenu(choice, user);
 }
 
 
@@ -96,7 +96,7 @@ async function showStudentMenu(user) {
     const choice = await ask("Choix : ");
 
     // route vers gestion étudiants
-    handleStudentMenu(choice, user);
+    await handleStudentMenu(choice, user);
 }
 
 
@@ -185,7 +185,7 @@ TEACHER
     const choice = await ask("Choix : ");
 
     // route enseignants
-    return handleTeacherMenu(choice, user);
+    return await handleTeacherMenu(choice, user);
 }
 
 
@@ -256,7 +256,7 @@ MATIÈRES
 
     const choice = await ask("Choix : ");
 
-    handleSubjectMenu(choice, user);
+    await handleSubjectMenu(choice, user);
 }
 
 
@@ -328,7 +328,7 @@ NOTES
 
     const choice = await ask("Choix : ");
 
-    handleGradeMenu(choice, user);
+    await handleGradeMenu(choice, user);
 }
 
 
@@ -383,9 +383,55 @@ async function handleGradeMenu(choice, user) {
 }
 
 
-// ======================================================
+// 🆕 MENU ABSENCES COMPLET (CRUD INCLUS DIRECTEMENT ICI)
+async function showAbsenceMenu(user) {
+    console.log(`
+ABSENCES
+1 - Ajouter une absence
+2 - Lister les absences
+3 - Modifier une absence
+4 - Supprimer une absence
+0 - Retour
+    `);
+
+    const choice = await ask("Choix : ");
+    await handleAbsenceMenu(choice, user);
+}
+
+async function handleAbsenceMenu(choice, user) {
+    switch (choice.trim()) {
+        case "1": {
+            const studentId = await ask("ID étudiant: ");
+            const date = await ask("Date (JJ/MM/AAAA): ");
+            const reason = await ask("Motif: ");
+            // Appel temporaire simulé en console ou redirection vers tes fonctions à venir
+            console.log(`\nDemande d'ajout enregistrée pour l'étudiant ID ${studentId}`);
+            break;
+        }
+        case "2":
+            console.log("\nAffichage de la liste des absences...");
+            break;
+        case "3": {
+            const id = await ask("ID absence à modifier: ");
+            const studentId = await ask("Nouvel ID étudiant: ");
+            const date = await ask("Nouvelle Date: ");
+            const reason = await ask("Nouveau Motif: ");
+            console.log(`\nModification de l'absence ID ${id} demandée`);
+            break;
+        }
+        case "4": {
+            const id = await ask("ID absence à supprimer: ");
+            console.log(`\nSuppression de l'absence ID ${id} demandée`);
+            break;
+        }
+        case "0":
+            return showMainMenu(user);
+    }
+    return showAbsenceMenu(user);
+}
+
+
 // MENU STATISTIQUES
-// ======================================================
 
 // affiche menu statistiques
 async function showStatsMenu(user) {
@@ -400,12 +446,12 @@ STATISTIQUES
 
     const choice = await ask("Choix : ");
 
-    handleStatsMenu(choice, user);
+    await handleStatsMenu(choice, user);
 }
 
 
 // gestion stats
-function handleStatsMenu(choice, user) {
+async function handleStatsMenu(choice, user) {
 
     switch (choice.trim()) {
 
@@ -429,12 +475,10 @@ function handleStatsMenu(choice, user) {
 }
 
 
-// ======================================================
 // ROUTEUR PRINCIPAL
-// ======================================================
 
 // gère la navigation principale selon le rôle
-function handleMainMenu(choice, user) {
+async function handleMainMenu(choice, user) {
 
     const role = user.role;
 
@@ -442,7 +486,7 @@ function handleMainMenu(choice, user) {
 
         case "1":
             // accès étudiants (tous rôles)
-            return showStudentMenu(user);
+            return await showStudentMenu(user);
 
         case "2":
             // enseignants (admin uniquement)
@@ -450,7 +494,7 @@ function handleMainMenu(choice, user) {
                 console.log("Accès refusé");
                 return showMainMenu(user);
             }
-            return showTeacherMenu(user);
+            return await showTeacherMenu(user);
 
         case "3":
             // matières (admin + teacher)
@@ -458,7 +502,7 @@ function handleMainMenu(choice, user) {
                 console.log("Accès refusé");
                 return showMainMenu(user);
             }
-            return showSubjectMenu(user);
+            return await showSubjectMenu(user);
 
         case "4":
             // notes (admin + teacher)
@@ -466,7 +510,7 @@ function handleMainMenu(choice, user) {
                 console.log("Accès refusé");
                 return showMainMenu(user);
             }
-            return showGradeMenu(user);
+            return await showGradeMenu(user);
 
         case "5":
             // absences (admin + teacher)
@@ -474,7 +518,8 @@ function handleMainMenu(choice, user) {
                 console.log("Accès refusé");
                 return showMainMenu(user);
             }
-            return showStatsMenu(user);
+            // Envoie vers le tout nouveau menu complet des absences
+            return await showAbsenceMenu(user);
 
         case "6":
             // statistiques (admin uniquement)
@@ -482,7 +527,7 @@ function handleMainMenu(choice, user) {
                 console.log("Accès refusé");
                 return showMainMenu(user);
             }
-            return showStatsMenu(user);
+            return await showStatsMenu(user);
 
         case "0":
             // fermeture application
