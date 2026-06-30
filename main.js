@@ -66,7 +66,7 @@ import { setUser } from "./utils/session.js";
 async function startApp() {
     console.log(`
 
-        ____________BIENVENUE____________
+        ____________ BIENVENUE ____________
 
                        *A*
 
