@@ -28,34 +28,102 @@ import {
     getGeneralAverage, getBestStudent, countAbsences
 } from "../services/statsService.js";
 
+import { addUser, listUsers, getUserById, updateUser, deleteUser } 
+from "../services/userServices.js";
 
-// MAIN MENU
-
+/// MENU PRINCIPAL
 export async function showMainMenu(user) {
     console.clear();
+
     console.log(`
 SCHOOL MANAGEMENT
 
-User: ${user.nom}  ${user.prenom}  (${user.role})
-    `);
+User: ${user.nom} ${user.prenom} (${user.role})
+`);
 
     const options = [];
     options.push("1 - Étudiants");
+    if (user.role === "admin") {
+    options.push("2 - Gestion des utilisateurs");
+    }
     options.push("3 - Matières");
     options.push("4 - Notes");
     options.push("5 - Absences");
-
-    if (user.role === "admin") {
-        options.push("2 - Enseignants");
-        options.push("6 - Statistiques");
-    }
+    options.push("6 - Statistiques");
 
     options.push("0 - Quitter");
+
     console.log(options.join("\n"));
 
     const choice = await ask("\nChoix : ");
     await handleMainMenu(choice, user);
 }
+
+// MENU ADMIN
+
+async function showAdminMenu(user) {
+    console.clear();
+
+    console.log(`
+===== GESTION DES UTILISATEURS =====
+
+1 - Ajouter un utilisateur
+2 - Modifier un utilisateur
+3 - Lister les utilisateurs
+4 - Supprimer un utilisateur
+0 - Retour
+`);
+
+    const choice = await ask("Choix : ");
+
+    switch (choice.trim()) {
+       case "1": {
+    const nom = await ask("Nom : ");
+    const prenom = await ask("Prénom : ");
+    const password = await ask("Mot de passe : ");
+    const role = await ask("Rôle (admin/teacher/student) : ");
+
+    addUser(nom, prenom, password, role);
+    break;
+}
+
+       case "2": {
+    const id = await ask("ID de l'utilisateur : ");
+    const nom = await ask("Nouveau nom : ");
+    const prenom = await ask("Nouveau prénom : ");
+    const password = await ask("Nouveau mot de passe : ");
+    const role = await ask("Nouveau rôle : ");
+
+    updateUser(
+        Number(id),
+        nom,
+        prenom,
+        password,
+        role
+    );
+    break;
+}
+
+        case "3":
+            listUsers();
+            break;
+
+        case "4": {
+    const id = await ask("ID de l'utilisateur à supprimer : ");
+    deleteUser(Number(id));
+    break;
+}
+        case "0":
+            return showMainMenu(user);
+
+        default:
+            console.log("Choix invalide");
+    }
+
+    await ask("\nAppuyez sur Entrée pour continuer...");
+    return showAdminMenu(user);
+}
+
 
 
 // MENU ÉTUDIANTS
@@ -390,11 +458,11 @@ async function handleMainMenu(choice, user) {
         case "1":
             return await showStudentMenu(user);
         case "2":
-            if (role !== "admin") {
-                console.log("Accès refusé");
-                return showMainMenu(user);
-            }
-            return await showTeacherMenu(user);
+    if (role !== "admin") {
+        console.log("Accès refusé");
+        return showMainMenu(user);
+    }
+    return await showAdminMenu(user);
         case "3":
             if (!["admin", "teacher"].includes(role)) {
                 console.log("Accès refusé");
@@ -427,3 +495,4 @@ async function handleMainMenu(choice, user) {
             return showMainMenu(user);
     }
 }
+

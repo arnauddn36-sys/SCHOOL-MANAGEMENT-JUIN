@@ -20,7 +20,7 @@ CREATE TABLE users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nom TEXT NOT NULL,
     prenom TEXT NOT NULL,
-    password TEXT NOT NULL,
+    password TEXT NOT NULL UNIQUE,
     role TEXT NOT NULL
 );
 `);
@@ -32,11 +32,12 @@ VALUES (?, ?, ?, ?)
 `);
 
 // Utilisateurs par défaut
-insertUsers.run("Arno", "Den", "0123", "admin");
+insertUsers.run("Den", "Arnaud", "0123", "admin");
 insertUsers.run("Bob", "LeBon", "1234", "teacher");
-insertUsers.run("Jean", "Dupont", "0000", "student");
+insertUsers.run("Jean", "Martin", "0000", "student");
 
-// 🎓 STUDENTS
+
+// STUDENTS
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS students(
@@ -58,7 +59,7 @@ insertStudents.run("MAT-2026-021", "Kouadio", "Menelick", 18, "1er A1");
 insertStudents.run("MAT-2026-022", "Diallo", "Amoin", 19, "1er A1");
 
 
-// 👨‍🏫 TEACHERS
+// TEACHERS
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS teachers(
@@ -77,9 +78,7 @@ insertTeachers.run("IRIE BI", "Mathématiques");
 insertTeachers.run("DRAMANE SCHELLA", "Français");
 
 
-// ======================================================
-// 📚 SUBJECTS
-// ======================================================
+//  SUBJECTS
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS subjects(
@@ -144,9 +143,7 @@ insertAbsences.run(1, nowDate, "Justifié");
 insertAbsences.run(2, nowDate, "Non-justifié");
 
 
-// ======================================================
-// 📊 TEST JOIN GRADES
-// ======================================================
+//TEST JOIN GRADES
 
 const queryGrades = db.prepare(`
     SELECT
@@ -159,8 +156,6 @@ const queryGrades = db.prepare(`
     JOIN subjects ON grades.subject_id = subjects.id
 `);
 
-// ======================================================
-// 📤 EXPORT DB
-// ======================================================
+// EXPORT DB
 
 export default db;

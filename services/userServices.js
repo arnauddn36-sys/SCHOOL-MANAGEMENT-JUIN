@@ -1,20 +1,24 @@
+
 import db from "../db/database.js";
 
-export function addUser(name, role) {
-    const result = db
-        .prepare(`
-            INSERT INTO users(name, role)
-            VALUES(?, ?)
-        `)
-        .run(name, role);
+export function addUser(nom, prenom, password, role) {
+    const existingUser = db.prepare(`
+        SELECT *
+        FROM users
+        WHERE password = ?
+    `).get(password);
 
-    if (result.changes === 0) {
-        console.log("Échec de l'ajout de l'utilisateur.");
-    } else {
-        console.log("Utilisateur ajouté avec succès.");
+    if (existingUser) {
+        console.log("Ce mot de passe est déjà utilisé.");
+        return;
     }
 
-    console.table(User());
+    db.prepare(`
+        INSERT INTO users (nom, prenom, password, role)
+        VALUES (?, ?, ?, ?)
+    `).run(nom, prenom, password, role);
+
+    console.log(" Utilisateur ajouté.");
 }
    
 
@@ -29,43 +33,60 @@ export function getUserById(id) {
         return;
     }
 
-    
+    return user;
 }
 
 export function listUsers() {
-    const users = db.prepare("SELECT * FROM users").all();
-    //console.table(users);
-}       
+    const users = db.prepare(`
+        SELECT * FROM users
+    `).all();
+
+    if (users.length === 0) {
+        console.log("Aucun utilisateur trouvé.");
+        return;
+    }
+
+    console.table(users);
+}
 
 
 
-export function updateUser(id, name, role) {
-    const result = db
-        .prepare(`
-            UPDATE users
-            SET name = ?, role = ?
-            WHERE id = ?
-        `)
-        .run(name, role, id);
+export function updateUser(
+    id,
+    nom,
+    prenom,
+    password,
+    role
+) {
+    const result = db.prepare(`
+        UPDATE users
+        SET nom = ?, prenom = ?, password = ?, role = ?
+        WHERE id = ?
+    `).run(
+        nom,
+        prenom,
+        password,
+        role,
+        id
+    );
 
     if (result.changes === 0) {
         console.log(`Aucun utilisateur trouvé avec l'ID ${id}`);
     } else {
-        console.log("Utilisateur mis à jour avec succès.");
+        console.log("Utilisateur modifié avec succès.");
     }
-    
-
 }
 
 export function deleteUser(id) {
-    const result = db
-        .prepare("DELETE FROM users WHERE id = ?")
-        .run(id);
+    const result = db.prepare(`
+        DELETE FROM users
+        WHERE id = ?
+    `).run(id);
 
     if (result.changes === 0) {
         console.log(`Aucun utilisateur trouvé avec l'ID ${id}`);
     } else {
         console.log("Utilisateur supprimé avec succès.");
     }
+}
 
-}   

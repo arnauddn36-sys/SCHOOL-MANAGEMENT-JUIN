@@ -64,13 +64,14 @@ import { showMainMenu } from "./menu/mainMenu.js";
 import { setUser } from "./utils/session.js";
 
 async function startApp() {
+    console.clear();
     console.log(`
 
         ____________ BIENVENUE ____________
 
                        *A*
 
-            ___SCHOOL-MANAGEMENT___
+              ___SCHOOL-MANAGEMENT___
 
 
 
@@ -78,9 +79,16 @@ async function startApp() {
                 ** Se connecter ** 
     `);
 
-    const nom = await ask("nom : ");
-    const prenom = await ask("prenom :");
-    const password = await ask("Mot de passe : ");
+console.log("\n Tapez 0 pour reprendre la saisie.\n");
+
+const nom = await ask("Nom : ");
+if (nom === "0") return startApp();
+
+const prenom = await ask("Prénom : ");
+if (prenom === "0") return startApp();
+
+const password = await ask("Mot de passe : ");
+if (password === "0") return startApp();
 
     const user = login(nom, prenom, password);
 
@@ -91,10 +99,12 @@ async function startApp() {
 
     setUser(user);
 
-    console.log(`\n✅ Bienvenue ${user.nom} ${user.prenom}  (${user.role})\n`);
+    console.log(`\n Bienvenue ${user.nom} ${user.prenom}  (${user.role})\n`);
 
     showMainMenu(user);
 }
+
+
 
 startApp();
 

@@ -10,9 +10,8 @@ export function addSubject(nom, teacher_id){
 
 export function listSubjects(){
     const subjects = db.prepare("SELECT * FROM subjects").all();
+    
     console.table(subjects);
-
-    console.table(Subjects);
 }
 
 export function getSubjectById(id){
@@ -41,3 +40,7 @@ export function deleteSubject(id){
     `).run(id); 
     console.log("Matière supprimée avec succès");
 }   
+
+
+
+
