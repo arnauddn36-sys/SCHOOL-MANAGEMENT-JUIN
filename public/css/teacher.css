@@ -1,0 +1,124 @@
+/* =========================
+   INFORMATIONS PROFESSEUR
+========================= */
+
+
+.teacher-info {
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+.teacher-info p {
+
+    margin-top: 10px;
+
+}
+
+
+
+
+
+/* =========================
+   MENU PROFESSEUR
+========================= */
+
+
+.teacher-menu {
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+
+.teacher-menu button {
+
+    margin-right: 10px;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+
+
+/* =========================
+   LISTE DES ELEVES
+========================= */
+
+
+.students-list {
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+
+/* =========================
+   TABLEAU
+========================= */
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+
+
+
+th,
+td {
+
+    padding: 12px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+
+
+
+
+th {
+
+    background-color: #f1f5f9;
+
+}

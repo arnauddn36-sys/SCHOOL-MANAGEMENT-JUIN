@@ -1,0 +1,143 @@
+/* =========================
+   RESET GENERAL
+========================= */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background-color: #f4f6f8;
+
+    color: #333;
+
+    min-height: 100vh;
+
+}
+
+
+
+
+
+/* =========================
+   TITRES
+========================= */
+
+
+h1 {
+
+    font-size: 28px;
+
+}
+
+
+
+h2 {
+
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+/* =========================
+   HEADER COMMUN
+========================= */
+
+
+header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 40px;
+
+    background-color: white;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+
+/* =========================
+   BOUTONS GENERAUX
+========================= */
+
+
+button {
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+}
+
+
+
+button:hover {
+
+    opacity: 0.8;
+
+}
+
+
+
+
+
+/* =========================
+   CONTENU PRINCIPAL
+========================= */
+
+
+main {
+
+    padding: 30px 40px;
+
+}
+
+
+
+
+
+/* =========================
+   CARTES
+========================= */
+
+
+.card {
+
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}

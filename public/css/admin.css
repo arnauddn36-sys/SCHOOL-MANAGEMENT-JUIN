@@ -1,0 +1,115 @@
+/* =========================
+   HEADER ADMIN
+========================= */
+
+
+.admin-header {
+
+    background-color: white;
+
+}
+
+
+
+
+
+/* =========================
+   CARTES STATISTIQUES
+========================= */
+
+
+.dashboard-cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 40px;
+
+}
+
+
+
+
+
+.dashboard-cards .card {
+
+    text-align: center;
+
+}
+
+
+
+
+
+.dashboard-cards .card h3 {
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+
+}
+
+
+
+
+
+.dashboard-cards .card p {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+}
+
+
+
+
+
+/* =========================
+   MENU ADMIN
+========================= */
+
+
+.admin-menu {
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+
+.admin-menu h2 {
+
+    margin-bottom: 25px;
+
+}
+
+
+
+
+
+/* =========================
+   BOUTONS ADMIN
+========================= */
+
+
+.admin-menu button {
+
+    display: block;
+
+    width: 100%;
+
+    margin-bottom: 15px;
+
+}

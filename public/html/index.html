@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion - School Management</title>
+
+
+    <link rel="stylesheet" href="../css/global.css">
+
+    <link rel="stylesheet" href="../css/login.css">
+
+</head>
+
+
+<body>
+
+
+    <main class="login-container">
+
+
+        <section class="login-box">
+
+
+            <h1>
+                School Management
+            </h1>
+
+
+            <h2>
+                Connexion
+            </h2>
+
+
+
+            <form action="/api/auth/login" method="POST">
+
+
+                <label for="nom">
+                    Nom
+                </label>
+
+                <input 
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Votre nom"
+                    required
+                >
+
+
+
+                <label for="prenom">
+                    Prénom
+                </label>
+
+                <input 
+                    type="text"
+                    id="prenom"
+                    name="prenom"
+                    placeholder="Votre prénom"
+                    required
+                >
+
+
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <input 
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Votre mot de passe"
+                    required
+                >
+
+
+
+
+                <button type="submit">
+                    Se connecter
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

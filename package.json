@@ -8,9 +8,20 @@
   },
   "keywords": [],
   "author": "",
-  "license":"ISC",
+  "license": "ISC",
   "types": "module",
   "dependencies": {
-    "better-sqlite3": "12.10.0"
-  }
+    "better-sqlite3": "12.10.0",
+    "express": "^5.2.1"
+  },
+  "description": "",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnauddn36-sys/SCHOOL-MANAGEMENT-JUIN.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arnauddn36-sys/SCHOOL-MANAGEMENT-JUIN/issues"
+  },
+  "homepage": "https://github.com/arnauddn36-sys/SCHOOL-MANAGEMENT-JUIN#readme"
 }

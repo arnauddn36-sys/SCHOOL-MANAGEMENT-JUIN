@@ -90,3 +90,22 @@ export function deleteUser(id) {
     }
 }
 
+// Recherche utilisateur pour la connexion
+export function findUserByLogin(nom, prenom, password) {
+
+    const user = db.prepare(`
+        SELECT *
+        FROM users
+        WHERE nom = ?
+        AND prenom = ?
+        AND password = ?
+    `).get(
+        nom,
+        prenom,
+        password
+    );
+
+
+    return user;
+
+}

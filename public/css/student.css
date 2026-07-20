@@ -1,0 +1,131 @@
+/* =========================
+   INFORMATIONS ELEVE
+========================= */
+
+
+.student-info {
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+.student-info p {
+
+    margin-top: 10px;
+
+}
+
+
+
+
+
+/* =========================
+   MENU ELEVE
+========================= */
+
+
+.student-menu {
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+
+.student-menu button {
+
+    margin-right: 10px;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+
+
+/* =========================
+   NOTES ET ABSENCES
+========================= */
+
+
+.grades,
+.absences {
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+
+
+
+
+/* =========================
+   TABLEAUX
+========================= */
+
+
+.grades table,
+.absences table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+
+
+
+.grades th,
+.grades td,
+.absences th,
+.absences td {
+
+    padding: 12px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+
+
+
+
+.grades th,
+.absences th {
+
+    background-color: #f1f5f9;
+
+}
