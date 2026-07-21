@@ -4,7 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <title>
         Dashboard Administrateur
@@ -12,7 +14,9 @@
 
 
     <link rel="stylesheet" href="../css/global.css">
+
     <link rel="stylesheet" href="../css/admin.css">
+
 
 </head>
 
@@ -20,178 +24,379 @@
 <body>
 
 
-    <header class="admin-header">
 
-        <h1>
-            School Management
-        </h1>
+<header class="admin-header">
 
 
-        <div class="admin-info">
+    <h1>
+        SCHOOL MANAGEMENT
+    </h1>
 
-            <span>
-                Administrateur
-            </span>
 
-            <button id="logout">
-                Déconnexion
-            </button>
 
-        </div>
+    <div class="admin-info">
 
 
-    </header>
+        <span id="admin-name">
 
+            Administrateur
 
+        </span>
 
 
 
-    <main class="admin-container">
+        <button id="logout">
 
+            Déconnexion
 
-        <!-- MENU ADMIN -->
+        </button>
 
-        <aside class="admin-menu">
 
 
-            <h2>
-                Menu
-            </h2>
+    </div>
 
 
-            <ul>
 
+</header>
 
-                <li>
-                    <button>
-                        Gestion utilisateurs
-                    </button>
-                </li>
 
 
-                <li>
-                    <button>
-                        Gestion élèves
-                    </button>
-                </li>
 
 
-                <li>
-                    <button>
-                        Gestion professeurs
-                    </button>
-                </li>
+<main class="admin-container">
 
 
-                <li>
-                    <button>
-                        Gestion matières
-                    </button>
-                </li>
 
 
-                <li>
-                    <button>
-                        Statistiques
-                    </button>
-                </li>
 
+    <!-- MENU ADMIN -->
 
-            </ul>
+    <aside class="admin-menu">
 
 
-        </aside>
+        <h2>
+            Menu
+        </h2>
 
 
 
+        <ul>
 
 
 
-        <!-- CONTENU PRINCIPAL -->
+            <li>
 
-        <section class="admin-content">
+                <button id="users">
 
+                    Gestion utilisateurs
 
-            <h2>
-                Bienvenue Administrateur
-            </h2>
+                </button>
 
 
+            </li>
 
-            <div class="cards">
 
 
-                <div class="card">
 
-                    <h3>
-                        Utilisateurs
-                    </h3>
+            <li>
 
-                    <p>
-                        Gérer les comptes
-                    </p>
+                <button id="students">
 
-                </div>
+                    Gestion élèves
 
+                </button>
 
 
-                <div class="card">
+            </li>
 
-                    <h3>
-                        Élèves
-                    </h3>
 
-                    <p>
-                        Gestion des élèves
-                    </p>
 
-                </div>
 
 
+            <li>
 
+                <button id="teachers">
 
-                <div class="card">
+                    Gestion professeurs
 
-                    <h3>
-                        Professeurs
-                    </h3>
+                </button>
 
-                    <p>
-                        Gestion des professeurs
-                    </p>
 
-                </div>
+            </li>
 
 
 
-                <div class="card">
 
-                    <h3>
-                        Matières
-                    </h3>
 
-                    <p>
-                        Gestion des matières
-                    </p>
+            <li>
 
-                </div>
+                <button id="subjects">
 
+                    Gestion matières
+
+                </button>
+
+
+            </li>
+
+
+
+
+
+            <li>
+
+                <button id="grades">
+
+                    Gestion notes
+
+                </button>
+
+
+            </li>
+
+
+
+
+
+            <li>
+
+                <button id="absences">
+
+                    Gestion absences
+
+                </button>
+
+
+            </li>
+
+
+
+
+
+            <li>
+
+                <button id="stats">
+
+                    Statistiques
+
+                </button>
+
+
+            </li>
+
+
+
+
+        </ul>
+
+
+
+    </aside>
+
+
+
+
+
+
+
+    <!-- CONTENU PRINCIPAL -->
+
+
+    <section 
+        class="admin-content"
+        id="content"
+    >
+
+
+
+        <h2>
+
+            Bienvenue Administrateur
+
+        </h2>
+
+
+
+
+        <div class="cards">
+
+
+
+
+
+            <div class="card">
+
+
+                <h3>
+
+                    Utilisateurs
+
+                </h3>
+
+
+                <p>
+
+                    Gérer les comptes utilisateurs
+
+                </p>
 
 
             </div>
 
 
-        </section>
 
 
 
-    </main>
+
+
+            <div class="card">
+
+
+                <h3>
+
+                    Élèves
+
+                </h3>
+
+
+                <p>
+
+                    Gestion des élèves
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="card">
+
+
+                <h3>
+
+                    Professeurs
+
+                </h3>
+
+
+                <p>
+
+                    Gestion des professeurs
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="card">
+
+
+                <h3>
+
+                    Matières
+
+                </h3>
+
+
+                <p>
+
+                    Gestion des matières
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="card">
+
+
+                <h3>
+
+                    Notes
+
+                </h3>
+
+
+                <p>
+
+                    Gestion des notes
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="card">
+
+
+                <h3>
+
+                    Absences
+
+                </h3>
+
+
+                <p>
+
+                    Gestion des absences
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+</main>
+
 
 
 
 
 
 <script src="../js/admin.js"></script>
+<script src="../js/users.js"></script>
+
 
 
 </body>

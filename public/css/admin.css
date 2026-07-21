@@ -1,32 +1,54 @@
-/* =========================
+/* ==========================
    HEADER ADMIN
-========================= */
+========================== */
 
 
 .admin-header {
 
-    background-color: white;
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: #2e73e2;
+
+    color: white;
 
 }
 
 
 
+.admin-header h1 {
+
+    margin: 0;
+    
+
+}
 
 
-/* =========================
-   CARTES STATISTIQUES
-========================= */
 
+.admin-info {
 
-.dashboard-cards {
+    display: flex;
 
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
 
     gap: 20px;
 
-    margin-bottom: 40px;
+}
+
+
+
+.admin-info button {
+
+    padding: 10px 15px;
+
+    border: none;
+
+    cursor: pointer;
 
 }
 
@@ -34,9 +56,18 @@
 
 
 
-.dashboard-cards .card {
+/* ==========================
+   STRUCTURE PRINCIPALE
+========================== */
 
-    text-align: center;
+
+.admin-container {
+
+
+    display: flex;
+
+    min-height: calc(100vh - 80px);
+
 
 }
 
@@ -44,54 +75,63 @@
 
 
 
-.dashboard-cards .card h3 {
-
-    margin-bottom: 15px;
-
-    font-size: 18px;
-
-}
-
-
-
-
-
-.dashboard-cards .card p {
-
-    font-size: 30px;
-
-    font-weight: bold;
-
-}
-
-
-
-
-
-/* =========================
+/* ==========================
    MENU ADMIN
-========================= */
+========================== */
 
 
 .admin-menu {
 
-    background-color: white;
 
-    padding: 30px;
+    width: 250px;
 
-    border-radius: 10px;
+    padding: 20px;
 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: #334155;
+
+    color: white;
+
 
 }
-
-
 
 
 
 .admin-menu h2 {
 
-    margin-bottom: 25px;
+    margin-top: 0;
+
+}
+
+
+
+.admin-menu ul {
+
+    list-style: none;
+
+    padding: 0;
+
+}
+
+
+
+.admin-menu li {
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.admin-menu button {
+
+
+    width: 100%;
+
+    padding: 12px;
+
+
+    cursor: pointer;
+
 
 }
 
@@ -99,17 +139,125 @@
 
 
 
-/* =========================
-   BOUTONS ADMIN
-========================= */
+/* ==========================
+   CONTENU
+========================== */
 
 
-.admin-menu button {
+.admin-content {
 
-    display: block;
 
-    width: 100%;
+    flex: 1;
 
-    margin-bottom: 15px;
+    padding: 30px;
+
+
+}
+
+
+
+.admin-content h2 {
+
+
+    margin-top: 0;
+
+
+}
+
+
+
+
+
+/* ==========================
+   CARTES
+========================== */
+
+
+.cards {
+
+
+    display: grid;
+
+
+    grid-template-columns: repeat(3, 1fr);
+
+
+    gap: 20px;
+
+
+}
+
+
+
+
+
+.card {
+
+
+    padding: 20px;
+
+
+    background: white;
+
+
+    border-radius: 10px;
+
+
+}
+
+
+
+
+
+.card h3 {
+
+
+    margin-top: 0;
+
+
+}
+
+
+
+
+
+/* ==========================
+   RESPONSIVE TELEPHONE
+========================== */
+
+
+@media(max-width: 768px) {
+
+
+
+    .admin-container {
+
+
+        flex-direction: column;
+
+
+    }
+
+
+
+    .admin-menu {
+
+
+        width: auto;
+
+
+    }
+
+
+
+    .cards {
+
+
+        grid-template-columns: 1fr;
+
+
+    }
+
+
 
 }

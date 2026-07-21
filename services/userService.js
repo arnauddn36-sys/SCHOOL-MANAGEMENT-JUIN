@@ -1,55 +1,117 @@
-
 import db from "../db/database.js";
 
+
+
+// ==========================
+// Ajouter un utilisateur
+// ==========================
+
 export function addUser(nom, prenom, password, role) {
+
+
     const existingUser = db.prepare(`
         SELECT *
         FROM users
         WHERE password = ?
     `).get(password);
 
+
+
     if (existingUser) {
-        console.log("Ce mot de passe est déjà utilisé.");
-        return;
+
+        console.log(
+            "Ce mot de passe est déjà utilisé."
+        );
+
+        return false;
+
     }
+
+
 
     db.prepare(`
         INSERT INTO users (nom, prenom, password, role)
         VALUES (?, ?, ?, ?)
-    `).run(nom, prenom, password, role);
+    `).run(
+        nom,
+        prenom,
+        password,
+        role
+    );
 
-    console.log(" Utilisateur ajouté.");
+
+
+    return true;
+
 }
-   
 
+
+
+
+
+
+// ==========================
+// Récupérer un utilisateur par ID
+// ==========================
 
 export function getUserById(id) {
-    const user = db
-        .prepare("SELECT * FROM users WHERE id = ?")
-        .get(id);
+
+
+    const user = db.prepare(`
+        SELECT *
+        FROM users
+        WHERE id = ?
+    `).get(id);
+
+
 
     if (!user) {
-        console.log(`Aucun utilisateur trouvé avec l'ID ${id}`);
-        return;
+
+        console.log(
+            `Aucun utilisateur trouvé avec l'ID ${id}`
+        );
+
+        return null;
+
     }
+
+
 
     return user;
+
 }
+
+
+
+
+
+
+// ==========================
+// Liste de tous les utilisateurs
+// ==========================
 
 export function listUsers() {
+
+
     const users = db.prepare(`
-        SELECT * FROM users
+        SELECT *
+        FROM users
     `).all();
 
-    if (users.length === 0) {
-        console.log("Aucun utilisateur trouvé.");
-        return;
-    }
 
-    console.table(users);
+
+    return users;
+
 }
 
 
+
+
+
+
+// ==========================
+// Modifier un utilisateur
+// ==========================
 
 export function updateUser(
     id,
@@ -58,9 +120,37 @@ export function updateUser(
     password,
     role
 ) {
+
+
+
+    // Vérifier si le mot de passe existe déjà
+    const existingUser = db.prepare(`
+        SELECT *
+        FROM users
+        WHERE password = ?
+        AND id != ?
+    `).get(
+        password,
+        id
+    );
+
+
+
+    if (existingUser) {
+
+        return false;
+
+    }
+
+
+
+
     const result = db.prepare(`
         UPDATE users
-        SET nom = ?, prenom = ?, password = ?, role = ?
+        SET nom = ?,
+            prenom = ?,
+            password = ?,
+            role = ?
         WHERE id = ?
     `).run(
         nom,
@@ -70,28 +160,119 @@ export function updateUser(
         id
     );
 
+
+
     if (result.changes === 0) {
-        console.log(`Aucun utilisateur trouvé avec l'ID ${id}`);
-    } else {
-        console.log("Utilisateur modifié avec succès.");
+
+        return false;
+
     }
+
+
+
+    return true;
+
 }
 
+
+
+
+
+
+// ==========================
+// Supprimer un utilisateur
+// ==========================
+
 export function deleteUser(id) {
+
+
+
+    // Chercher l'utilisateur
+    const user = db.prepare(`
+        SELECT *
+        FROM users
+        WHERE id = ?
+    `).get(id);
+
+
+
+
+    if (!user) {
+
+        return false;
+
+    }
+
+
+
+
+
+
+    // Protection du dernier administrateur
+
+    if (user.role === "admin") {
+
+
+
+        const admins = db.prepare(`
+            SELECT COUNT(*) AS total
+            FROM users
+            WHERE role = 'admin'
+        `).get();
+
+
+
+        if (admins.total <= 1) {
+
+            return false;
+
+        }
+
+
+    }
+
+
+
+
+
+
     const result = db.prepare(`
         DELETE FROM users
         WHERE id = ?
     `).run(id);
 
+
+
+
+
     if (result.changes === 0) {
-        console.log(`Aucun utilisateur trouvé avec l'ID ${id}`);
-    } else {
-        console.log("Utilisateur supprimé avec succès.");
+
+        return false;
+
     }
+
+
+
+    return true;
+
 }
 
-// Recherche utilisateur pour la connexion
-export function findUserByLogin(nom, prenom, password) {
+
+
+
+
+
+
+// ==========================
+// Connexion utilisateur
+// ==========================
+
+export function findUserByLogin(
+    nom,
+    prenom,
+    password
+) {
+
 
     const user = db.prepare(`
         SELECT *
@@ -104,6 +285,7 @@ export function findUserByLogin(nom, prenom, password) {
         prenom,
         password
     );
+
 
 
     return user;

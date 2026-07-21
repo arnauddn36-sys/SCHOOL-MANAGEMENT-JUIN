@@ -3,9 +3,7 @@
 import { findUserByLogin } from "../services/userService.js";
 
 
-// ===============================
 // CONNEXION UTILISATEUR
-// ===============================
 
 export function login(req, res) {
 
@@ -50,40 +48,17 @@ export function login(req, res) {
 
         // Redirection selon le rôle
 
-        switch (user.role) {
+       // Réponse envoyée au frontend
 
+return res.json({
 
-            case "admin":
+    success: true,
 
-                return res.redirect(
-                    "/html/admin.html"
-                );
+    role: user.role,
 
+    message: "Connexion réussie"
 
-
-            case "teacher":
-
-                return res.redirect(
-                    "/html/teacher.html"
-                );
-
-
-
-            case "student":
-
-                return res.redirect(
-                    "/html/student.html"
-                );
-
-
-
-            default:
-
-                return res.status(403).send(
-                    "Rôle utilisateur inconnu"
-                );
-
-        }
+});
 
 
 

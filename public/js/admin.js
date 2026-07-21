@@ -1,34 +1,52 @@
-// =========================
-// DASHBOARD ADMIN
-// =========================
+// ==========================
+// Récupération des éléments
+// ==========================
+
+
+const content = document.getElementById("content");
+
+
+const logoutButton = document.getElementById("logout");
+
+
+const usersButton = document.getElementById("users");
+
+const studentsButton = document.getElementById("students");
+
+const teachersButton = document.getElementById("teachers");
+
+const subjectsButton = document.getElementById("subjects");
+
+const gradesButton = document.getElementById("grades");
+
+const absencesButton = document.getElementById("absences");
+
+const statsButton = document.getElementById("stats");
 
 
 
-console.log("Dashboard admin chargé");
 
 
+// ==========================
+// Fonction affichage contenu
+// ==========================
 
 
-
-// =========================
-// DECONNEXION
-// =========================
+function showContent(title, message) {
 
 
-const logoutButton = document.querySelector("header button");
+    content.innerHTML = `
+
+        <h2>
+            ${title}
+        </h2>
 
 
+        <p>
+            ${message}
+        </p>
 
-if(logoutButton){
-
-
-    logoutButton.addEventListener("click", function(){
-
-
-        window.location.href = "index.html";
-
-
-    });
+    `;
 
 
 }
@@ -39,28 +57,119 @@ if(logoutButton){
 
 
 
-// BOUTONS ADMIN
+// ==========================
+// Gestion des boutons
+// ==========================
 
 
 
-const adminButtons = document.querySelectorAll(
-    ".admin-menu button"
-);
 
 
 
-adminButtons.forEach(function(button){
 
 
-    button.addEventListener("click", function(){
+
+studentsButton.addEventListener("click", () => {
 
 
-        alert(
-            "Fonction : " + button.textContent
-        );
+    showContent(
+        "Gestion élèves",
+        "Ici nous allons gérer les élèves."
+    );
 
 
-    });
+});
+
+
+
+
+
+teachersButton.addEventListener("click", () => {
+
+
+    showContent(
+        "Gestion professeurs",
+        "Ici nous allons gérer les professeurs."
+    );
+
+
+});
+
+
+
+
+
+subjectsButton.addEventListener("click", () => {
+
+
+    showContent(
+        "Gestion matières",
+        "Ici nous allons gérer les matières."
+    );
+
+
+});
+
+
+
+
+
+gradesButton.addEventListener("click", () => {
+
+
+    showContent(
+        "Gestion notes",
+        "Ici nous allons gérer les notes."
+    );
+
+
+});
+
+
+
+
+
+absencesButton.addEventListener("click", () => {
+
+
+    showContent(
+        "Gestion absences",
+        "Ici nous allons gérer les absences."
+    );
+
+
+});
+
+
+
+
+
+statsButton.addEventListener("click", () => {
+
+
+    showContent(
+        "Statistiques",
+        "Ici nous afficherons les statistiques."
+    );
+
+
+});
+
+
+
+
+
+
+
+// ==========================
+// Déconnexion
+// ==========================
+
+
+logoutButton.addEventListener("click", () => {
+
+
+    window.location.href = "/html/index.html";
 
 
 });
