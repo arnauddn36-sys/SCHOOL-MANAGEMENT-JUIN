@@ -3,8 +3,12 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+
+
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import statsRoutes from "./routes/statsRoutes.js";
+import teacherRoutes from "./routes/teacherRoutes.js";
 
 
 // Création du serveur Express
@@ -29,14 +33,17 @@ app.use(express.json());
 
 
 // Rend le dossier public accessible
-// Exemple : public/html/index.html devient /html/index.html
 app.use(express.static(path.join(__dirname, "public")));
 
+// Routes de statistiques
 
+app.use("/api/stats", statsRoutes);
 
+// Routes des utilisateurs
+
+app.use("/api/teachers", teacherRoutes);
 
 // ROUTES
-
 
 // Routes d'authentification
 app.use("/api/auth", authRoutes);

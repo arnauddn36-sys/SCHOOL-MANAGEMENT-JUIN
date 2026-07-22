@@ -84,18 +84,14 @@ studentsButton.addEventListener("click", () => {
 
 
 
-teachersButton.addEventListener("click", () => {
+teachersButton.addEventListener(
+    "click",
+    function(){
 
+        loadTeachers();
 
-    showContent(
-        "Gestion professeurs",
-        "Ici nous allons gérer les professeurs."
-    );
-
-
-});
-
-
+    }
+);
 
 
 
@@ -144,18 +140,123 @@ absencesButton.addEventListener("click", () => {
 
 
 
-statsButton.addEventListener("click", () => {
+// Statistiques
+
+statsButton.addEventListener(
+    "click",
+    loadStats
+);
 
 
-    showContent(
-        "Statistiques",
-        "Ici nous afficherons les statistiques."
-    );
 
+async function loadStats() {
 
-});
+    try {
 
+        const response = await fetch(
+            "/api/stats"
+        );
 
+        const stats = await response.json();
+
+        content.innerHTML = `
+
+            <h2>
+                Statistiques
+            </h2>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h3>Utilisateurs</h3>
+
+                    <p>${stats.utilisateurs}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Élèves</h3>
+
+                    <p>${stats.eleves}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Professeurs</h3>
+
+                    <p>${stats.professeurs}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Matières</h3>
+
+                    <p>${stats.matieres}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Notes</h3>
+
+                    <p>${stats.notes}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Absences</h3>
+
+                    <p>${stats.absences}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Moyenne générale</h3>
+
+                    <p>${stats.moyenneGenerale ?? 0}</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Meilleur élève</h3>
+
+                    <p>
+
+                        ${
+                            stats.meilleurEleve
+                                ? `${stats.meilleurEleve.nom} ${stats.meilleurEleve.prenom} (${Number(stats.meilleurEleve.moyenne).toFixed(2)})`
+                                : "Aucun"
+                        }
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+    } catch (error) {
+
+        console.error(
+            "Erreur statistiques :",
+            error
+        );
+
+        alert(
+            "Impossible de charger les statistiques."
+        );
+
+    }
+
+}
 
 
 
